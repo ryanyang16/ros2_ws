@@ -1,0 +1,3 @@
+ros2 topic echo /mavros/vision_pose/pose | grep -A 9 "pose" | tee vision_pose.log
+ros2 topic echo /mavros/setpoint_position/local | grep -A 9 "pose" | tee setpoint.log
+

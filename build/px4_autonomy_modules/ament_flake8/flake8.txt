@@ -1,0 +1,67 @@
+-- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':
+ - /opt/ros/foxy/bin/ament_flake8 --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml
+
+
+./launch/mavros.launch.py:7:1: E302 expected 2 blank lines, found 1
+def generate_launch_description():
+^
+
+./launch/mavros.launch.py:32:100: E501 line too long (110 > 99 characters)
+            default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_pluginlists.yaml"
+                                                                                                   ^
+
+./launch/mavros.launch.py:37:100: E501 line too long (105 > 99 characters)
+            default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_config.yaml"
+                                                                                                   ^
+
+./launch/mavros.launch.py:66:27: E203 whitespace before ':'
+                {"fcu_url" : LaunchConfiguration("fcu_url")},
+                          ^
+
+./launch/mavros.launch.py:67:27: E203 whitespace before ':'
+                {"gcs_url" : LaunchConfiguration("gcs_url")},
+                          ^
+
+./launch/mavros.launch.py:68:30: E203 whitespace before ':'
+                {"tgt_system" : LaunchConfiguration("tgt_system")},
+                             ^
+
+./launch/mavros.launch.py:69:33: E203 whitespace before ':'
+                {"tgt_component" : LaunchConfiguration("tgt_component") },
+                                ^
+
+./launch/mavros.launch.py:69:72: E202 whitespace before '}'
+                {"tgt_component" : LaunchConfiguration("tgt_component") },
+                                                                       ^
+
+./launch/mavros.launch.py:70:32: E203 whitespace before ':'
+                {"fcu_protocol" : LaunchConfiguration("fcu_protocol")},
+                               ^
+
+./launch/mavros.launch.py:74:1: W293 blank line contains whitespace
+            
+^
+
+./launch/mavros.launch.py:76:7: W292 no newline at end of file
+    ])      ^
+
+1     E202 whitespace before '}'
+5     E203 whitespace before ':'
+1     E302 expected 2 blank lines, found 1
+2     E501 line too long (110 > 99 characters)
+1     W292 no newline at end of file
+1     W293 blank line contains whitespace
+
+1 files checked
+11 errors
+
+'E'-type errors: 9
+'W'-type errors: 2
+
+Checked files:
+
+* ./launch/mavros.launch.py
+
+
+-- run_test.py: return code 1
+-- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml'

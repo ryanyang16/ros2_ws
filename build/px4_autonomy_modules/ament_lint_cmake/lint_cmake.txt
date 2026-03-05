@@ -1,0 +1,9 @@
+-- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':
+ - /opt/ros/foxy/bin/ament_lint_cmake --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml
+
+
+No problems found
+
+
+-- run_test.py: return code 0
+-- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml'

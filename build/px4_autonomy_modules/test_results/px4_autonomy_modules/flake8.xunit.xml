@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite
+  name="px4_autonomy_modules.flake8"
+  tests="11"
+  errors="0"
+  failures="11"
+  time="0.435"
+>
+  <testcase
+    name="E302 (./launch/mavros.launch.py:7:1)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="expected 2 blank lines, found 1:&#10;def generate_launch_description():&#10;"/>
+  </testcase>
+  <testcase
+    name="E501 (./launch/mavros.launch.py:32:100)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message='line too long (110 &gt; 99 characters):&#10;            default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_pluginlists.yaml"&#10;'/>
+  </testcase>
+  <testcase
+    name="E501 (./launch/mavros.launch.py:37:100)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message='line too long (105 &gt; 99 characters):&#10;            default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_config.yaml"&#10;'/>
+  </testcase>
+  <testcase
+    name="E203 (./launch/mavros.launch.py:66:27)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="whitespace before ':':&#10;                {&quot;fcu_url&quot; : LaunchConfiguration(&quot;fcu_url&quot;)},&#10;"/>
+  </testcase>
+  <testcase
+    name="E203 (./launch/mavros.launch.py:67:27)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="whitespace before ':':&#10;                {&quot;gcs_url&quot; : LaunchConfiguration(&quot;gcs_url&quot;)},&#10;"/>
+  </testcase>
+  <testcase
+    name="E203 (./launch/mavros.launch.py:68:30)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="whitespace before ':':&#10;                {&quot;tgt_system&quot; : LaunchConfiguration(&quot;tgt_system&quot;)},&#10;"/>
+  </testcase>
+  <testcase
+    name="E203 (./launch/mavros.launch.py:69:33)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="whitespace before ':':&#10;                {&quot;tgt_component&quot; : LaunchConfiguration(&quot;tgt_component&quot;) },&#10;"/>
+  </testcase>
+  <testcase
+    name="E202 (./launch/mavros.launch.py:69:72)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="whitespace before '}':&#10;                {&quot;tgt_component&quot; : LaunchConfiguration(&quot;tgt_component&quot;) },&#10;"/>
+  </testcase>
+  <testcase
+    name="E203 (./launch/mavros.launch.py:70:32)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="whitespace before ':':&#10;                {&quot;fcu_protocol&quot; : LaunchConfiguration(&quot;fcu_protocol&quot;)},&#10;"/>
+  </testcase>
+  <testcase
+    name="W293 (./launch/mavros.launch.py:74:1)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="blank line contains whitespace:&#10;            &#10;"/>
+  </testcase>
+  <testcase
+    name="W292 (./launch/mavros.launch.py:76:7)"
+    classname="px4_autonomy_modules.flake8"
+  >
+      <failure message="no newline at end of file:&#10;    ])"/>
+  </testcase>
+  <system-out>Checked files:
+* ./launch/mavros.launch.py</system-out>
+</testsuite>

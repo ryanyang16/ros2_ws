@@ -1,0 +1,216 @@
+[0.000000] (-) TimerEvent: {}
+[0.000920] (px4_autonomy_modules) JobQueued: {'identifier': 'px4_autonomy_modules', 'dependencies': OrderedDict([('px4_autonomy_modules', '/home/jetson/ros2_ws/install/px4_autonomy_modules')])}
+[0.001137] (px4_autonomy_modules) JobStarted: {'identifier': 'px4_autonomy_modules'}
+[0.097491] (-) TimerEvent: {}
+[0.149876] (px4_autonomy_modules) Command: {'cmd': ['/usr/bin/ctest', '-C', 'Release', '-D', 'ExperimentalTest', '--no-compress-output', '-V', '--force-new-ctest-process'], 'cwd': '/home/jetson/ros2_ws/build/px4_autonomy_modules', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'jetson'), ('SSH_AGENT_PID', '5094'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda/lib64:/usr/local/cuda/lib64:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/jetson'), ('OLDPWD', '/home/jetson'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '4952'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5617'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'jetson'), ('JOURNAL_STREAM', '8:38242'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'jetson'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/usr/local/cuda/bin:/usr/local/cuda/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/jetson:@/tmp/.ICE-unix/5129,unix/jetson:/tmp/.ICE-unix/5129'), ('INVOCATION_ID', 'bd4ad3f750114ddca4ce5686cbcdc206'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '5'), ('AMENT_PREFIX_PATH', '/home/jetson/ros2_ws/install/px4_autonomy_modules:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:2ee9c80e-b0f7-4715-959a-e96aa94cd4af'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jetson/ros2_ws/build/px4_autonomy_modules'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/jetson/ros2_ws/install/px4_autonomy_modules')]), 'shell': False}
+[0.197694] (-) TimerEvent: {}
+[0.199634] (px4_autonomy_modules) StdoutLine: {'line': b'UpdateCTestConfiguration  from :/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini\n'}
+[0.200576] (px4_autonomy_modules) StdoutLine: {'line': b'Parse Config file:/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini\n'}
+[0.201305] (px4_autonomy_modules) StdoutLine: {'line': b'   Site: jetson\n'}
+[0.201680] (px4_autonomy_modules) StdoutLine: {'line': b'   Build name: (empty)\n'}
+[0.202034] (px4_autonomy_modules) StdoutLine: {'line': b' Add coverage exclude regular expressions.\n'}
+[0.202428] (px4_autonomy_modules) StdoutLine: {'line': b'SetCTestConfiguration:CMakeCommand:/usr/bin/cmake\n'}
+[0.203216] (px4_autonomy_modules) StdoutLine: {'line': b'Create new tag: 20260209-2259 - Experimental\n'}
+[0.203715] (px4_autonomy_modules) StdoutLine: {'line': b'UpdateCTestConfiguration  from :/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini\n'}
+[0.204130] (px4_autonomy_modules) StdoutLine: {'line': b'Parse Config file:/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini\n'}
+[0.204489] (px4_autonomy_modules) StdoutLine: {'line': b'Test project /home/jetson/ros2_ws/build/px4_autonomy_modules\n'}
+[0.204857] (px4_autonomy_modules) StdoutLine: {'line': b'Constructing a list of tests\n'}
+[0.205223] (px4_autonomy_modules) StdoutLine: {'line': b'Done constructing a list of tests\n'}
+[0.205757] (px4_autonomy_modules) StdoutLine: {'line': b'Updating test list for fixtures\n'}
+[0.206256] (px4_autonomy_modules) StdoutLine: {'line': b'Added 0 tests to meet fixture requirements\n'}
+[0.206662] (px4_autonomy_modules) StdoutLine: {'line': b'Checking test dependency graph...\n'}
+[0.207022] (px4_autonomy_modules) StdoutLine: {'line': b'Checking test dependency graph end\n'}
+[0.207481] (px4_autonomy_modules) StdoutLine: {'line': b'test 1\n'}
+[0.207894] (px4_autonomy_modules) StdoutLine: {'line': b'    Start 1: flake8\n'}
+[0.208274] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[0.208700] (px4_autonomy_modules) StdoutLine: {'line': b'1: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_flake8/flake8.txt" "--command" "/opt/ros/foxy/bin/ament_flake8" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml"\n'}
+[0.209188] (px4_autonomy_modules) StdoutLine: {'line': b'1: Test timeout computed to be: 60\n'}
+[0.297869] (-) TimerEvent: {}
+[0.398475] (-) TimerEvent: {}
+[0.447408] (px4_autonomy_modules) StdoutLine: {'line': b"1: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':\n"}
+[0.448224] (px4_autonomy_modules) StdoutLine: {'line': b'1:  - /opt/ros/foxy/bin/ament_flake8 --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml\n'}
+[0.498725] (-) TimerEvent: {}
+[0.599906] (-) TimerEvent: {}
+[0.701014] (-) TimerEvent: {}
+[0.801692] (-) TimerEvent: {}
+[0.902710] (-) TimerEvent: {}
+[1.003724] (-) TimerEvent: {}
+[1.104636] (-) TimerEvent: {}
+[1.205235] (-) TimerEvent: {}
+[1.305837] (-) TimerEvent: {}
+[1.406433] (-) TimerEvent: {}
+[1.507419] (-) TimerEvent: {}
+[1.608043] (-) TimerEvent: {}
+[1.708728] (-) TimerEvent: {}
+[1.809356] (-) TimerEvent: {}
+[1.909987] (-) TimerEvent: {}
+[1.933044] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.936040] (px4_autonomy_modules) StdoutLine: {'line': b'1: ./launch/mavros.launch.py:7:1: E302 expected 2 blank lines, found 1\n'}
+[1.936781] (px4_autonomy_modules) StdoutLine: {'line': b'1: def generate_launch_description():\n'}
+[1.937360] (px4_autonomy_modules) StdoutLine: {'line': b'1: ^\n'}
+[1.937852] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.938413] (px4_autonomy_modules) StdoutLine: {'line': b'1: ./launch/mavros.launch.py:32:100: E501 line too long (110 > 99 characters)\n'}
+[1.939135] (px4_autonomy_modules) StdoutLine: {'line': b'1:             default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_pluginlists.yaml"\n'}
+[1.939696] (px4_autonomy_modules) StdoutLine: {'line': b'1:                                                                                                    ^\n'}
+[1.940172] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.940649] (px4_autonomy_modules) StdoutLine: {'line': b'1: ./launch/mavros.launch.py:37:100: E501 line too long (105 > 99 characters)\n'}
+[1.941679] (px4_autonomy_modules) StdoutLine: {'line': b'1:             default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_config.yaml"\n'}
+[1.942321] (px4_autonomy_modules) StdoutLine: {'line': b'1:                                                                                                    ^\n'}
+[1.942880] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.943701] (px4_autonomy_modules) StdoutLine: {'line': b"1: ./launch/mavros.launch.py:66:27: E203 whitespace before ':'\n"}
+[1.944265] (px4_autonomy_modules) StdoutLine: {'line': b'1:                 {"fcu_url" : LaunchConfiguration("fcu_url")},\n'}
+[1.944739] (px4_autonomy_modules) StdoutLine: {'line': b'1:                           ^\n'}
+[1.945189] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.945624] (px4_autonomy_modules) StdoutLine: {'line': b"1: ./launch/mavros.launch.py:67:27: E203 whitespace before ':'\n"}
+[1.946085] (px4_autonomy_modules) StdoutLine: {'line': b'1:                 {"gcs_url" : LaunchConfiguration("gcs_url")},\n'}
+[1.946535] (px4_autonomy_modules) StdoutLine: {'line': b'1:                           ^\n'}
+[1.946974] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.947498] (px4_autonomy_modules) StdoutLine: {'line': b"1: ./launch/mavros.launch.py:68:30: E203 whitespace before ':'\n"}
+[1.948017] (px4_autonomy_modules) StdoutLine: {'line': b'1:                 {"tgt_system" : LaunchConfiguration("tgt_system")},\n'}
+[1.948569] (px4_autonomy_modules) StdoutLine: {'line': b'1:                              ^\n'}
+[1.949185] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.949739] (px4_autonomy_modules) StdoutLine: {'line': b"1: ./launch/mavros.launch.py:69:33: E203 whitespace before ':'\n"}
+[1.950290] (px4_autonomy_modules) StdoutLine: {'line': b'1:                 {"tgt_component" : LaunchConfiguration("tgt_component") },\n'}
+[1.950788] (px4_autonomy_modules) StdoutLine: {'line': b'1:                                 ^\n'}
+[1.951358] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.951886] (px4_autonomy_modules) StdoutLine: {'line': b"1: ./launch/mavros.launch.py:69:72: E202 whitespace before '}'\n"}
+[1.952360] (px4_autonomy_modules) StdoutLine: {'line': b'1:                 {"tgt_component" : LaunchConfiguration("tgt_component") },\n'}
+[1.952836] (px4_autonomy_modules) StdoutLine: {'line': b'1:                                                                        ^\n'}
+[1.953356] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.953873] (px4_autonomy_modules) StdoutLine: {'line': b"1: ./launch/mavros.launch.py:70:32: E203 whitespace before ':'\n"}
+[1.954440] (px4_autonomy_modules) StdoutLine: {'line': b'1:                 {"fcu_protocol" : LaunchConfiguration("fcu_protocol")},\n'}
+[1.954950] (px4_autonomy_modules) StdoutLine: {'line': b'1:                                ^\n'}
+[1.955520] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.956040] (px4_autonomy_modules) StdoutLine: {'line': b'1: ./launch/mavros.launch.py:74:1: W293 blank line contains whitespace\n'}
+[1.956520] (px4_autonomy_modules) StdoutLine: {'line': b'1:             \n'}
+[1.956994] (px4_autonomy_modules) StdoutLine: {'line': b'1: ^\n'}
+[1.957454] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.958193] (px4_autonomy_modules) StdoutLine: {'line': b'1: ./launch/mavros.launch.py:76:7: W292 no newline at end of file\n'}
+[1.958978] (px4_autonomy_modules) StdoutLine: {'line': b'1:     ])      ^\n'}
+[1.959672] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.960268] (px4_autonomy_modules) StdoutLine: {'line': b"1: 1     E202 whitespace before '}'\n"}
+[1.960881] (px4_autonomy_modules) StdoutLine: {'line': b"1: 5     E203 whitespace before ':'\n"}
+[1.961609] (px4_autonomy_modules) StdoutLine: {'line': b'1: 1     E302 expected 2 blank lines, found 1\n'}
+[1.962113] (px4_autonomy_modules) StdoutLine: {'line': b'1: 2     E501 line too long (110 > 99 characters)\n'}
+[1.962525] (px4_autonomy_modules) StdoutLine: {'line': b'1: 1     W292 no newline at end of file\n'}
+[1.962914] (px4_autonomy_modules) StdoutLine: {'line': b'1: 1     W293 blank line contains whitespace\n'}
+[1.963325] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.963742] (px4_autonomy_modules) StdoutLine: {'line': b'1: 1 files checked\n'}
+[1.964140] (px4_autonomy_modules) StdoutLine: {'line': b'1: 11 errors\n'}
+[1.964522] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.964945] (px4_autonomy_modules) StdoutLine: {'line': b"1: 'E'-type errors: 9\n"}
+[1.965383] (px4_autonomy_modules) StdoutLine: {'line': b"1: 'W'-type errors: 2\n"}
+[1.965839] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.966332] (px4_autonomy_modules) StdoutLine: {'line': b'1: Checked files:\n'}
+[1.966882] (px4_autonomy_modules) StdoutLine: {'line': b'1: \n'}
+[1.967554] (px4_autonomy_modules) StdoutLine: {'line': b'1: * ./launch/mavros.launch.py\n'}
+[2.010171] (-) TimerEvent: {}
+[2.063504] (px4_autonomy_modules) StdoutLine: {'line': b'1: -- run_test.py: return code 1\n'}
+[2.064193] (px4_autonomy_modules) StdoutLine: {'line': b"1: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml'\n"}
+[2.102329] (px4_autonomy_modules) StdoutLine: {'line': b'1/4 Test #1: flake8 ...........................***Failed    1.90 sec\n'}
+[2.103404] (px4_autonomy_modules) StdoutLine: {'line': b'test 2\n'}
+[2.103924] (px4_autonomy_modules) StdoutLine: {'line': b'    Start 2: lint_cmake\n'}
+[2.104317] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[2.104707] (px4_autonomy_modules) StdoutLine: {'line': b'2: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_lint_cmake/lint_cmake.txt" "--command" "/opt/ros/foxy/bin/ament_lint_cmake" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml"\n'}
+[2.105106] (px4_autonomy_modules) StdoutLine: {'line': b'2: Test timeout computed to be: 60\n'}
+[2.110329] (-) TimerEvent: {}
+[2.211137] (-) TimerEvent: {}
+[2.311833] (-) TimerEvent: {}
+[2.357766] (px4_autonomy_modules) StdoutLine: {'line': b"2: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':\n"}
+[2.358939] (px4_autonomy_modules) StdoutLine: {'line': b'2:  - /opt/ros/foxy/bin/ament_lint_cmake --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml\n'}
+[2.412066] (-) TimerEvent: {}
+[2.512734] (-) TimerEvent: {}
+[2.613906] (-) TimerEvent: {}
+[2.714881] (-) TimerEvent: {}
+[2.818103] (-) TimerEvent: {}
+[2.918725] (-) TimerEvent: {}
+[3.019405] (-) TimerEvent: {}
+[3.120065] (-) TimerEvent: {}
+[3.220725] (-) TimerEvent: {}
+[3.321365] (-) TimerEvent: {}
+[3.323320] (px4_autonomy_modules) StdoutLine: {'line': b'2: \n'}
+[3.324104] (px4_autonomy_modules) StdoutLine: {'line': b'2: No problems found\n'}
+[3.386553] (px4_autonomy_modules) StdoutLine: {'line': b'2: -- run_test.py: return code 0\n'}
+[3.387362] (px4_autonomy_modules) StdoutLine: {'line': b"2: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml'\n"}
+[3.421547] (-) TimerEvent: {}
+[3.430107] (px4_autonomy_modules) StdoutLine: {'line': b'2/4 Test #2: lint_cmake .......................   Passed    1.33 sec\n'}
+[3.430943] (px4_autonomy_modules) StdoutLine: {'line': b'test 3\n'}
+[3.431443] (px4_autonomy_modules) StdoutLine: {'line': b'    Start 3: pep257\n'}
+[3.431849] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[3.432225] (px4_autonomy_modules) StdoutLine: {'line': b'3: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_pep257/pep257.txt" "--command" "/opt/ros/foxy/bin/ament_pep257" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml"\n'}
+[3.432681] (px4_autonomy_modules) StdoutLine: {'line': b'3: Test timeout computed to be: 60\n'}
+[3.521739] (-) TimerEvent: {}
+[3.622786] (-) TimerEvent: {}
+[3.709962] (px4_autonomy_modules) StdoutLine: {'line': b"3: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':\n"}
+[3.710662] (px4_autonomy_modules) StdoutLine: {'line': b'3:  - /opt/ros/foxy/bin/ament_pep257 --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml\n'}
+[3.722972] (-) TimerEvent: {}
+[3.825189] (-) TimerEvent: {}
+[3.926414] (-) TimerEvent: {}
+[4.028847] (-) TimerEvent: {}
+[4.129686] (-) TimerEvent: {}
+[4.231763] (-) TimerEvent: {}
+[4.339797] (-) TimerEvent: {}
+[4.440460] (-) TimerEvent: {}
+[4.541051] (-) TimerEvent: {}
+[4.642053] (-) TimerEvent: {}
+[4.742887] (-) TimerEvent: {}
+[4.843905] (-) TimerEvent: {}
+[4.944590] (-) TimerEvent: {}
+[5.011164] (px4_autonomy_modules) StdoutLine: {'line': b'3: checking ./launch/mavros.launch.py\n'}
+[5.011978] (px4_autonomy_modules) StdoutLine: {'line': b'3: No problems found\n'}
+[5.044768] (-) TimerEvent: {}
+[5.105224] (px4_autonomy_modules) StdoutLine: {'line': b'3: -- run_test.py: return code 0\n'}
+[5.106009] (px4_autonomy_modules) StdoutLine: {'line': b"3: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml'\n"}
+[5.144934] (-) TimerEvent: {}
+[5.149010] (px4_autonomy_modules) StdoutLine: {'line': b'3/4 Test #3: pep257 ...........................   Passed    1.72 sec\n'}
+[5.149876] (px4_autonomy_modules) StdoutLine: {'line': b'test 4\n'}
+[5.150297] (px4_autonomy_modules) StdoutLine: {'line': b'    Start 4: xmllint\n'}
+[5.150654] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[5.151040] (px4_autonomy_modules) StdoutLine: {'line': b'4: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_xmllint/xmllint.txt" "--command" "/opt/ros/foxy/bin/ament_xmllint" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml"\n'}
+[5.157940] (px4_autonomy_modules) StdoutLine: {'line': b'4: Test timeout computed to be: 60\n'}
+[5.245094] (-) TimerEvent: {}
+[5.345741] (-) TimerEvent: {}
+[5.389307] (px4_autonomy_modules) StdoutLine: {'line': b"4: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':\n"}
+[5.389894] (px4_autonomy_modules) StdoutLine: {'line': b'4:  - /opt/ros/foxy/bin/ament_xmllint --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml\n'}
+[5.445993] (-) TimerEvent: {}
+[5.547021] (-) TimerEvent: {}
+[5.647786] (-) TimerEvent: {}
+[5.748684] (-) TimerEvent: {}
+[5.849365] (-) TimerEvent: {}
+[5.950015] (-) TimerEvent: {}
+[6.050615] (-) TimerEvent: {}
+[6.151222] (-) TimerEvent: {}
+[6.252011] (-) TimerEvent: {}
+[6.352604] (-) TimerEvent: {}
+[6.453287] (-) TimerEvent: {}
+[6.553998] (-) TimerEvent: {}
+[6.654727] (-) TimerEvent: {}
+[6.755427] (-) TimerEvent: {}
+[6.856119] (-) TimerEvent: {}
+[6.956755] (-) TimerEvent: {}
+[7.002922] (px4_autonomy_modules) StdoutLine: {'line': b"4: File 'package.xml' is valid\n"}
+[7.003677] (px4_autonomy_modules) StdoutLine: {'line': b'4: \n'}
+[7.004189] (px4_autonomy_modules) StdoutLine: {'line': b'4: No problems found\n'}
+[7.057002] (-) TimerEvent: {}
+[7.072637] (px4_autonomy_modules) StdoutLine: {'line': b'4: -- run_test.py: return code 0\n'}
+[7.073456] (px4_autonomy_modules) StdoutLine: {'line': b"4: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml'\n"}
+[7.117009] (px4_autonomy_modules) StdoutLine: {'line': b'4/4 Test #4: xmllint ..........................   Passed    1.97 sec\n'}
+[7.117896] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[7.118661] (px4_autonomy_modules) StdoutLine: {'line': b'75% tests passed\x1b[0;0m, \x1b[0;31m1 tests failed\x1b[0;0m out of 4\n'}
+[7.119051] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[7.119468] (px4_autonomy_modules) StdoutLine: {'line': b'Label Time Summary:\n'}
+[7.119823] (px4_autonomy_modules) StdoutLine: {'line': b'flake8        =   1.90 sec*proc (1 test)\n'}
+[7.120157] (px4_autonomy_modules) StdoutLine: {'line': b'lint_cmake    =   1.33 sec*proc (1 test)\n'}
+[7.120480] (px4_autonomy_modules) StdoutLine: {'line': b'linter        =   6.91 sec*proc (4 tests)\n'}
+[7.120950] (px4_autonomy_modules) StdoutLine: {'line': b'pep257        =   1.72 sec*proc (1 test)\n'}
+[7.121323] (px4_autonomy_modules) StdoutLine: {'line': b'xmllint       =   1.97 sec*proc (1 test)\n'}
+[7.121701] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[7.122068] (px4_autonomy_modules) StdoutLine: {'line': b'Total Test time (real) =   6.92 sec\n'}
+[7.122423] (px4_autonomy_modules) StdoutLine: {'line': b'\n'}
+[7.122780] (px4_autonomy_modules) StdoutLine: {'line': b'The following tests FAILED:\n'}
+[7.123154] (px4_autonomy_modules) StdoutLine: {'line': b'\t\x1b[0;31m  1 - flake8 (Failed)\x1b[0;0m\n'}
+[7.123672] (px4_autonomy_modules) StderrLine: {'line': b'Errors while running CTest\n'}
+[7.126830] (px4_autonomy_modules) CommandEnded: {'returncode': 8}
+[7.128930] (px4_autonomy_modules) TestFailure: {'identifier': 'px4_autonomy_modules'}
+[7.129616] (px4_autonomy_modules) JobEnded: {'identifier': 'px4_autonomy_modules', 'rc': 0}
+[7.132203] (-) EventReactorShutdown: {}

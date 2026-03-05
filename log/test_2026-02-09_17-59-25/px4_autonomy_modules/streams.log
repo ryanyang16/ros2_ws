@@ -1,0 +1,140 @@
+[0.152s] Invoking command in '/home/jetson/ros2_ws/build/px4_autonomy_modules': AMENT_PREFIX_PATH=/home/jetson/ros2_ws/install/px4_autonomy_modules:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/ros2_ws/install/px4_autonomy_modules /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process
+[0.199s] UpdateCTestConfiguration  from :/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini
+[0.200s] Parse Config file:/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini
+[0.200s]    Site: jetson
+[0.201s]    Build name: (empty)
+[0.201s]  Add coverage exclude regular expressions.
+[0.202s] SetCTestConfiguration:CMakeCommand:/usr/bin/cmake
+[0.202s] Create new tag: 20260209-2259 - Experimental
+[0.203s] UpdateCTestConfiguration  from :/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini
+[0.203s] Parse Config file:/home/jetson/ros2_ws/build/px4_autonomy_modules/CTestConfiguration.ini
+[0.204s] Test project /home/jetson/ros2_ws/build/px4_autonomy_modules
+[0.204s] Constructing a list of tests
+[0.204s] Done constructing a list of tests
+[0.205s] Updating test list for fixtures
+[0.205s] Added 0 tests to meet fixture requirements
+[0.206s] Checking test dependency graph...
+[0.206s] Checking test dependency graph end
+[0.207s] test 1
+[0.207s]     Start 1: flake8
+[0.207s] 
+[0.208s] 1: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_flake8/flake8.txt" "--command" "/opt/ros/foxy/bin/ament_flake8" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml"
+[0.208s] 1: Test timeout computed to be: 60
+[0.447s] 1: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':
+[0.447s] 1:  - /opt/ros/foxy/bin/ament_flake8 --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml
+[1.932s] 1: 
+[1.935s] 1: ./launch/mavros.launch.py:7:1: E302 expected 2 blank lines, found 1
+[1.936s] 1: def generate_launch_description():
+[1.936s] 1: ^
+[1.937s] 1: 
+[1.938s] 1: ./launch/mavros.launch.py:32:100: E501 line too long (110 > 99 characters)
+[1.938s] 1:             default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_pluginlists.yaml"
+[1.939s] 1:                                                                                                    ^
+[1.939s] 1: 
+[1.940s] 1: ./launch/mavros.launch.py:37:100: E501 line too long (105 > 99 characters)
+[1.941s] 1:             default_value=get_package_share_directory("px4_autonomy_modules") + "/launch/px4_config.yaml"
+[1.941s] 1:                                                                                                    ^
+[1.942s] 1: 
+[1.943s] 1: ./launch/mavros.launch.py:66:27: E203 whitespace before ':'
+[1.943s] 1:                 {"fcu_url" : LaunchConfiguration("fcu_url")},
+[1.944s] 1:                           ^
+[1.944s] 1: 
+[1.945s] 1: ./launch/mavros.launch.py:67:27: E203 whitespace before ':'
+[1.945s] 1:                 {"gcs_url" : LaunchConfiguration("gcs_url")},
+[1.946s] 1:                           ^
+[1.946s] 1: 
+[1.947s] 1: ./launch/mavros.launch.py:68:30: E203 whitespace before ':'
+[1.947s] 1:                 {"tgt_system" : LaunchConfiguration("tgt_system")},
+[1.948s] 1:                              ^
+[1.948s] 1: 
+[1.949s] 1: ./launch/mavros.launch.py:69:33: E203 whitespace before ':'
+[1.949s] 1:                 {"tgt_component" : LaunchConfiguration("tgt_component") },
+[1.950s] 1:                                 ^
+[1.950s] 1: 
+[1.951s] 1: ./launch/mavros.launch.py:69:72: E202 whitespace before '}'
+[1.951s] 1:                 {"tgt_component" : LaunchConfiguration("tgt_component") },
+[1.952s] 1:                                                                        ^
+[1.952s] 1: 
+[1.953s] 1: ./launch/mavros.launch.py:70:32: E203 whitespace before ':'
+[1.954s] 1:                 {"fcu_protocol" : LaunchConfiguration("fcu_protocol")},
+[1.954s] 1:                                ^
+[1.955s] 1: 
+[1.955s] 1: ./launch/mavros.launch.py:74:1: W293 blank line contains whitespace
+[1.956s] 1:             
+[1.956s] 1: ^
+[1.957s] 1: 
+[1.958s] 1: ./launch/mavros.launch.py:76:7: W292 no newline at end of file
+[1.958s] 1:     ])      ^
+[1.959s] 1: 
+[1.959s] 1: 1     E202 whitespace before '}'
+[1.960s] 1: 5     E203 whitespace before ':'
+[1.961s] 1: 1     E302 expected 2 blank lines, found 1
+[1.961s] 1: 2     E501 line too long (110 > 99 characters)
+[1.962s] 1: 1     W292 no newline at end of file
+[1.962s] 1: 1     W293 blank line contains whitespace
+[1.962s] 1: 
+[1.963s] 1: 1 files checked
+[1.963s] 1: 11 errors
+[1.964s] 1: 
+[1.964s] 1: 'E'-type errors: 9
+[1.964s] 1: 'W'-type errors: 2
+[1.965s] 1: 
+[1.965s] 1: Checked files:
+[1.966s] 1: 
+[1.967s] 1: * ./launch/mavros.launch.py
+[2.063s] 1: -- run_test.py: return code 1
+[2.063s] 1: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/flake8.xunit.xml'
+[2.102s] 1/4 Test #1: flake8 ...........................***Failed    1.90 sec
+[2.103s] test 2
+[2.103s]     Start 2: lint_cmake
+[2.103s] 
+[2.104s] 2: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_lint_cmake/lint_cmake.txt" "--command" "/opt/ros/foxy/bin/ament_lint_cmake" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml"
+[2.104s] 2: Test timeout computed to be: 60
+[2.357s] 2: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':
+[2.359s] 2:  - /opt/ros/foxy/bin/ament_lint_cmake --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml
+[3.323s] 2: 
+[3.323s] 2: No problems found
+[3.386s] 2: -- run_test.py: return code 0
+[3.386s] 2: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/lint_cmake.xunit.xml'
+[3.430s] 2/4 Test #2: lint_cmake .......................   Passed    1.33 sec
+[3.430s] test 3
+[3.431s]     Start 3: pep257
+[3.431s] 
+[3.431s] 3: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_pep257/pep257.txt" "--command" "/opt/ros/foxy/bin/ament_pep257" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml"
+[3.432s] 3: Test timeout computed to be: 60
+[3.709s] 3: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':
+[3.710s] 3:  - /opt/ros/foxy/bin/ament_pep257 --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml
+[5.011s] 3: checking ./launch/mavros.launch.py
+[5.011s] 3: No problems found
+[5.104s] 3: -- run_test.py: return code 0
+[5.105s] 3: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/pep257.xunit.xml'
+[5.148s] 3/4 Test #3: pep257 ...........................   Passed    1.72 sec
+[5.149s] test 4
+[5.149s]     Start 4: xmllint
+[5.150s] 
+[5.156s] 4: Test command: /usr/bin/python3 "-u" "/opt/ros/foxy/share/ament_cmake_test/cmake/run_test.py" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml" "--package-name" "px4_autonomy_modules" "--output-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/ament_xmllint/xmllint.txt" "--command" "/opt/ros/foxy/bin/ament_xmllint" "--xunit-file" "/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml"
+[5.157s] 4: Test timeout computed to be: 60
+[5.388s] 4: -- run_test.py: invoking following command in '/home/jetson/ros2_ws/src/px4_autonomy_modules':
+[5.389s] 4:  - /opt/ros/foxy/bin/ament_xmllint --xunit-file /home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml
+[7.002s] 4: File 'package.xml' is valid
+[7.003s] 4: 
+[7.003s] 4: No problems found
+[7.072s] 4: -- run_test.py: return code 0
+[7.073s] 4: -- run_test.py: verify result file '/home/jetson/ros2_ws/build/px4_autonomy_modules/test_results/px4_autonomy_modules/xmllint.xunit.xml'
+[7.116s] 4/4 Test #4: xmllint ..........................   Passed    1.97 sec
+[7.117s] 
+[7.118s] 75% tests passed[0;0m, [0;31m1 tests failed[0;0m out of 4
+[7.118s] 
+[7.118s] Label Time Summary:
+[7.119s] flake8        =   1.90 sec*proc (1 test)
+[7.119s] lint_cmake    =   1.33 sec*proc (1 test)
+[7.120s] linter        =   6.91 sec*proc (4 tests)
+[7.120s] pep257        =   1.72 sec*proc (1 test)
+[7.120s] xmllint       =   1.97 sec*proc (1 test)
+[7.121s] 
+[7.121s] Total Test time (real) =   6.92 sec
+[7.121s] 
+[7.122s] The following tests FAILED:
+[7.122s] 	[0;31m  1 - flake8 (Failed)[0;0m
+[7.123s] Errors while running CTest
+[7.127s] Invoked command in '/home/jetson/ros2_ws/build/px4_autonomy_modules' returned '8': AMENT_PREFIX_PATH=/home/jetson/ros2_ws/install/px4_autonomy_modules:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/jetson/ros2_ws/install/px4_autonomy_modules /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process
