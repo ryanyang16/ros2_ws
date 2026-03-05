@@ -53,10 +53,10 @@ class CameraBridge(Node):
         pub_pose.pose.position.y = -msg.pose.pose.position.y
         pub_pose.pose.position.z = msg.pose.pose.position.z
         
-        pub_pose.pose.orientation.x = msg.pose.pose.orientation.y
-        pub_pose.pose.orientation.y = -msg.pose.pose.orientation.x
-        pub_pose.pose.orientation.z = msg.pose.pose.orientation.w
-        pub_pose.pose.orientation.w = -msg.pose.pose.orientation.z
+        pub_pose.pose.orientation.x = msg.pose.pose.orientation.x
+        pub_pose.pose.orientation.y = msg.pose.pose.orientation.y
+        pub_pose.pose.orientation.z = msg.pose.pose.orientation.z
+        pub_pose.pose.orientation.w = msg.pose.pose.orientation.w
         
 
         self.publisher.publish(pub_pose)
