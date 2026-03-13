@@ -1,0 +1,21 @@
+realsense_img_logger.py:
+saves jpg images from realsense's /camera/color/image_raw topic to a yolo_dataset/ folder 2x per second.
+make sure that topic exists and publishes quickly enough before running the script.
+
+flight_controller.py:
+makes decisions to switch between drone states (scan the room, track, land, etc).
+
+dummy_vision.py:
+sim code, use to manually trigger target detections and change distances to it.
+
+to run flight controller and vision sim:
+python3 flight_controller.py
+ros2 topic echo /mavros/setpoint_velocity/cmd_vel
+python3 dummy_vision.py
+
+in keyboard control terminal, press:
+1: to "spot the target". should see the drone deciding to approach it.
+2: move target closer
+3: should hand over the work to monocular cam, drop velocity to 0 (we're above the target)
+4: descent
+5: shift target and have the drone find it again
