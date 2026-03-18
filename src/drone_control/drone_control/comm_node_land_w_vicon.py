@@ -13,10 +13,33 @@ class CommNode(Node):
 
         qos = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT, depth=10)
         
+        # ==========================================================
+        # HARDCODE ZONE FOR PHASE 2 (LANDING PLATFORM)
+        # ==========================================================
+        # Set this to True after you paste your R and t values below
+        self.USE_HARDCODED_TRANSFORM = True 
+        
+        if self.USE_HARDCODED_TRANSFORM:
+            self.is_calibrated = True
+            self.R_vicon_to_cam = np.array([[0.024896569211801833, 0.9996114347537488, -0.012535563450951217], [-0.9996117306644552, 0.024735720343708044, -0.012827004992996044], [-0.012511944672768758, 0.012850044693647686, 0.9998391508597156]])
+            # PASTE YOUR PRINTED MATRICES HERE:
+            #self.R_vicon_to_cam = np.array([
+            #    [1.0, 0.0, 0.0],
+            #    [0.0, 1.0, 0.0],
+            #    [0.0, 0.0, 1.0]
+            #])
+            self.t_vicon_to_cam = np.array([-0.27865816415466305, -0.034079524195119046, -0.04330199271923668])
+            # self.t_vicon_to_cam = np.array([0.0, 0.0, 0.0])
+        else:
+            self.is_calibrated = False
+            self.R_vicon_to_cam = np.eye(3)
+            self.t_vicon_to_cam = np.zeros(3)
+        # ==========================================================
+
         # State Machine
         self.current_state = "INIT"
         self.waypoints = np.empty((0, 3))
-        self.waypoints_camera = np.empty((0, 3))
+        self.waypoints_camera = np.empty((0, 3)) 
         self.waypoints_received = False
         self.current_wp_index = 0
         self.has_launched = False
@@ -53,13 +76,16 @@ class CommNode(Node):
         self.srv_calib  = self.create_service(Trigger, 'rob498_drone_5/comm/calibrate', self.callback_calibrate)
         self.sub_waypoints = self.create_subscription(PoseArray, 'rob498_drone_5/comm/waypoints', self.callback_waypoints, 10)
 
-        # --- Calibration Variables ---
+        # --- Calibration Waypoints ---
         self.calib_waypoints = [
-            [0.0, 0.0, 0.0],  # WP1: Will be replaced by current position
-            [0.5, 0.5, 0.5],  # WP2
-            [0.5, 1.0, 1.0],  # WP3
-            [-0.5, 1.0, 0.5]  # WP4
+            [-2.0, -2.0, 0.5], 
+            [2.0, -2.0, 0.5],  
+            [0.0, 0.0, 0.5],   
+            [2.0, 2.0, 0.5],   
+            [-2.0, 2.0, 0.5]  
+            # (Truncated for brevity in the sample, you can put your full list back here)
         ]
+
         self.calib_wp_index = 0
         self.calib_cam_pts = []
         self.calib_vic_pts = []
@@ -68,44 +94,12 @@ class CommNode(Node):
         self.collection_start = 0.0
         self.temp_cam = []
         self.temp_vic = []
+        
         self.waypoints_transformed = False
-
-        # ==========================================================
-        # TODO: PHASE 2 MANUAL CALIBRATION INPUT
-        # After your calibration run, paste the output matrices here 
-        # and change `self.is_calibrated` to True before rebuilding.
-        # ==========================================================
-        self.is_calibrated = False  # <--- CHANGE TO True FOR MOVING LANDING TEST
-        
-        self.R_vicon_to_cam = np.array([
-            [1.0, 0.0, 0.0],
-            [0.0, 1.0, 0.0],
-            [0.0, 0.0, 1.0]
-        ])
-        
-        self.t_vicon_to_cam = np.array([0.0, 0.0, 0.0])
-        # ==========================================================
-
-        # --- Moving Landing Variables ---
-        self.landing_phase = "TRACK"
-        self.track_start_time = 0.0
 
         # The main code (runs at 50Hz)
         self.timer = self.create_timer(0.02, self.main_loop)
-        self.get_logger().info("Drone 5 Node Initialized and Waiting.")
-
-    def waypoints_to_cam_fr(self, vicon_waypoints):
-        """
-        Applies the Kabsch-computed transformation to the TA's Vicon waypoints.
-        """
-        local_waypoints = np.empty((0, 3))
-        
-        for wp in vicon_waypoints:
-            # P_cam = R * P_vicon + t
-            local_wp = np.dot(self.R_vicon_to_cam, wp) + self.t_vicon_to_cam
-            local_waypoints = np.vstack((local_waypoints, local_wp))
-            
-        return local_waypoints
+        self.get_logger().info("Drone Node Initialized. Hardcoded Transform: " + str(self.USE_HARDCODED_TRANSFORM))
 
     def compute_kabsch(self):
         """Computes optimal Rotation and Translation between Vicon and Camera frames."""
@@ -130,14 +124,16 @@ class CommNode(Node):
 
         self.R_vicon_to_cam = R
         self.t_vicon_to_cam = t
-        
-        # We DO NOT set self.is_calibrated = True here automatically anymore, 
-        # because you will hardcode it for the second run!
-        
-        self.get_logger().info('\n=== KABSCH CALIBRATION COMPLETE ===')
-        self.get_logger().info('\nPASTE THESE INTO __init__ FOR PHASE 2:')
-        self.get_logger().info(f'\nR_vicon_to_cam = np.array([\n  [{self.R_vicon_to_cam[0,0]}, {self.R_vicon_to_cam[0,1]}, {self.R_vicon_to_cam[0,2]}],\n  [{self.R_vicon_to_cam[1,0]}, {self.R_vicon_to_cam[1,1]}, {self.R_vicon_to_cam[1,2]}],\n  [{self.R_vicon_to_cam[2,0]}, {self.R_vicon_to_cam[2,1]}, {self.R_vicon_to_cam[2,2]}]\n])')
-        self.get_logger().info(f'\nt_vicon_to_cam = np.array([{self.t_vicon_to_cam[0]}, {self.t_vicon_to_cam[1]}, {self.t_vicon_to_cam[2]}])')
+        self.is_calibrated = True
+
+        self.get_logger().info('\n\n=== KABSCH CALIBRATION COMPLETE ===')
+        self.get_logger().info('COPY THE FOLLOWING LINES INTO YOUR HARDCODE ZONE:\n')
+        self.get_logger().info(f'self.R_vicon_to_cam = np.array({repr(self.R_vicon_to_cam.tolist())})')
+        self.get_logger().info(f'self.t_vicon_to_cam = np.array({repr(self.t_vicon_to_cam.tolist())})\n')
+        self.get_logger().info('=== INITIATING AUTO-LANDING ===\n\n')
+
+        # Automatically land so you can kill the script safely
+        self.current_state = "LAND"
 
     def pose_callback(self, msg):
         self.current_pose = msg
@@ -152,35 +148,22 @@ class CommNode(Node):
             self.got_initial_pose = True
 
     def vicon_callback(self, msg):
-        # Continually update our latest vicon pose for calibration sampling & tracking
         self.current_vicon_pose = msg
 
     def callback_waypoints(self, msg):
-        if self.waypoints_received:
-            return
-        self.get_logger().info('Waypoints received from a TA')
-        self.waypoints_received = True
-        for pose in msg.poses:
-            pos = np.array([pose.position.x, pose.position.y, pose.position.z])
-            self.waypoints = np.vstack((self.waypoints, pos))
-            
-        if self.is_calibrated and not self.waypoints_transformed:
-            self.waypoints_camera = self.waypoints_to_cam_fr(self.waypoints)
-            self.waypoints_transformed = True
-            self.get_logger().info("Successfully transformed late-arriving TA Waypoints into Camera Frame!")
+        pass # Ignored in this workflow since we track a moving platform instead of static waypoints
 
     # TA commands
     def callback_launch(self, request, response):
-        self.get_logger().info('TA Requested: LAUNCH')
+        self.get_logger().info('Requested: LAUNCH')
         self.current_state = "LAUNCH"
         response.success = True
         return response
 
     def callback_calibrate(self, request, response):
-        self.get_logger().info('User Requested: CALIBRATE (4-Point Sequence)')
+        self.get_logger().info('Requested: CALIBRATE')
         self.current_state = "CALIBRATE"
         
-        # WP1 is our current home position
         self.calib_waypoints[0] = [
             self.current_pose.pose.position.x,
             self.current_pose.pose.position.y,
@@ -190,9 +173,8 @@ class CommNode(Node):
         self.calib_wp_index = 0
         self.calib_cam_pts = []
         self.calib_vic_pts = []
-        self.waypoints_transformed = False
+        self.is_calibrated = False
         
-        # Set target to Point 1 immediately
         self.target_x = self.calib_waypoints[0][0]
         self.target_y = self.calib_waypoints[0][1]
         self.target_z = self.calib_waypoints[0][2]
@@ -201,21 +183,19 @@ class CommNode(Node):
         return response
 
     def callback_test(self, request, response):
-        self.get_logger().info('TA Requested: TEST (Moving Landing Sequence Initiated)')
+        self.get_logger().info('Requested: TEST (Tracking Platform)')
         self.current_state = "TEST"
-        self.landing_phase = "TRACK"
-        self.track_start_time = 0.0
         response.success = True
         return response
 
     def callback_land(self, request, response):
-        self.get_logger().info('TA Requested: LAND')
+        self.get_logger().info('Requested: LAND')
         self.current_state = "LAND"
         response.success = True
         return response
 
     def callback_abort(self, request, response):
-        self.get_logger().fatal('TA Requested: ABORT')
+        self.get_logger().fatal('Requested: ABORT')
         self.current_state = "ABORT"
         response.success = True
         return response
@@ -238,7 +218,6 @@ class CommNode(Node):
 
         elif self.current_state == "CALIBRATE":
             if self.calib_wp_index < 4:
-                # 1. Calculate Distance
                 current_pos = np.array([
                     self.current_pose.pose.position.x,
                     self.current_pose.pose.position.y,
@@ -247,7 +226,6 @@ class CommNode(Node):
                 target_wp = np.array(self.calib_waypoints[self.calib_wp_index])
                 distance = np.linalg.norm(current_pos - target_wp)
 
-                # 2. Check if arrived (10cm threshold)
                 if distance < 0.1 and not self.is_collecting:
                     self.is_collecting = True
                     self.collection_start = self.get_clock().now().nanoseconds / 1e9
@@ -255,19 +233,16 @@ class CommNode(Node):
                     self.temp_vic = []
                     self.get_logger().info(f"Arrived at Calib WP {self.calib_wp_index + 1}. Settling for 1s...")
 
-                # 3. Handle Timing and Collection
                 if self.is_collecting:
                     current_time = self.get_clock().now().nanoseconds / 1e9
                     time_elapsed = current_time - self.collection_start
                     
-                    # Only collect data between 1.0 and 2.5 seconds
                     if 1.0 <= time_elapsed <= 2.5:
                         self.temp_cam.append([
                             self.current_pose.pose.position.x,
                             self.current_pose.pose.position.y,
                             self.current_pose.pose.position.z
                         ])
-                        # Guard against missing vicon data
                         if self.current_vicon_pose.pose.position.x != 0.0 or self.current_vicon_pose.pose.position.y != 0.0:
                             self.temp_vic.append([
                                 self.current_vicon_pose.pose.position.x,
@@ -275,93 +250,75 @@ class CommNode(Node):
                                 self.current_vicon_pose.pose.position.z
                             ])
                     
-                    # 4. Finish Timer at 3.0s
                     elif time_elapsed >= 3.0:
                         self.is_collecting = False
                         
                         if len(self.temp_vic) == 0 or len(self.temp_cam) == 0:
-                            self.get_logger().error("NO VALID DATA RECEIVED DURING SAMPLING WINDOW! Calibration invalid.")
+                            self.get_logger().error("NO VALID DATA RECEIVED! Landing.")
                             self.current_state = "LAND"
                             return
 
-                        # Average the tightly sampled data
                         self.calib_cam_pts.append(np.mean(self.temp_cam, axis=0))
                         self.calib_vic_pts.append(np.mean(self.temp_vic, axis=0))
-                        self.get_logger().info(f"Calib WP {self.calib_wp_index + 1} recorded from tightly sampled window.")
                         
                         self.calib_wp_index += 1
                         
-                        # Go to next WP
                         if self.calib_wp_index < 4:
                             self.target_x = self.calib_waypoints[self.calib_wp_index][0]
                             self.target_y = self.calib_waypoints[self.calib_wp_index][1]
                             self.target_z = self.calib_waypoints[self.calib_wp_index][2]
-                            self.get_logger().info(f"Moving to Calib WP {self.calib_wp_index + 1}...")
 
             elif self.calib_wp_index == 4:
                 self.compute_kabsch()
-                self.calib_wp_index += 1 # Increment so we only compute once
-                self.get_logger().info("Hovering at Calib WP 4. PLEASE CALL /land, THEN HARDCODE MATRIX AND RESTART!")
+                self.calib_wp_index += 1 
 
         elif self.current_state == "TEST":
-            
-            # --- MOVING LANDING SEQUENCE ---
             if not self.is_calibrated:
-                self.get_logger().error("Cannot track: self.is_calibrated is False! Please hardcode the matrix and rebuild.")
-                self.current_state = "LAND" # Failsafe so it doesn't crash
+                self.get_logger().warn("Not calibrated! Cannot track platform. Go back to INIT.", throttle_duration_sec=2.0)
                 return
-                
-            # 1. Grab PLATFORM's raw global Vicon position
-            plat_vic = np.array([
+
+            # 1. Grab raw platform position from Vicon
+            p_vic = np.array([
                 self.current_vicon_pose.pose.position.x,
                 self.current_vicon_pose.pose.position.y,
                 self.current_vicon_pose.pose.position.z
             ])
-            
-            # 2. Transform into local camera frame (Mimics AprilTag output)
-            plat_cam = np.dot(self.R_vicon_to_cam, plat_vic) + self.t_vicon_to_cam
-            
-            # 3. Calculate horizontal distance (error)
-            dist_xy = np.linalg.norm([
-                self.current_pose.pose.position.x - plat_cam[0],
-                self.current_pose.pose.position.y - plat_cam[1]
+
+            # 2. Convert to Camera coordinate frame using your hardcoded matrix 
+            # (Math: P_cam = R * P_vicon + t)
+            p_cam = np.dot(self.R_vicon_to_cam, p_vic) + self.t_vicon_to_cam
+
+            # 3. Get current drone position
+            current_pos = np.array([
+                self.current_pose.pose.position.x,
+                self.current_pose.pose.position.y,
+                self.current_pose.pose.position.z
             ])
 
-            if self.landing_phase == "TRACK":
-                # Align perfectly at 50cm height
-                self.target_x = plat_cam[0]
-                self.target_y = plat_cam[1]
-                self.target_z = plat_cam[2] + 0.50
-                
-                # Wait for X/Y error to be < 10cm for 1.5 seconds to ensure we aren't swinging
-                if dist_xy < 0.10:
-                    if self.track_start_time == 0.0:
-                        self.track_start_time = self.get_clock().now().nanoseconds / 1e9
-                    elif (self.get_clock().now().nanoseconds / 1e9) - self.track_start_time > 1.5:
-                        self.get_logger().info("Target centered in 'FOV'. Initiating visual servo descent!")
-                        self.landing_phase = "DESCEND"
-                else:
-                    self.track_start_time = 0.0 # Reset timer if we lose alignment
+            # 4. Calculate error
+            dx = p_cam[0] - current_pos[0]
+            dy = p_cam[1] - current_pos[1]
+            dist_xy = np.sqrt(dx**2 + dy**2)
 
-            elif self.landing_phase == "DESCEND":
-                # CONTINUOUS TRACKING: Actively match X and Y as it moves!
-                self.target_x = plat_cam[0]
-                self.target_y = plat_cam[1]
+            # --- DYNAMIC TRACKING LOGIC ---
+            # Always match the X and Y of the moving platform
+            self.target_x = p_cam[0]
+            self.target_y = p_cam[1]
+
+            if dist_xy > 0.2:
+                # Approach phase: Hover 0.6m above the platform to avoid side collisions
+                self.target_z = p_cam[2] + 0.5
+                self.get_logger().info("TEST: Tracking platform (Hovering above)", throttle_duration_sec=1.0)
+            else:
+                # Descent phase: X and Y are locked in, lower Z to match the platform
+                self.target_z = p_cam[2]
+                self.get_logger().info("TEST: Locked on. Descending onto platform...", throttle_duration_sec=1.0)
                 
-                # Smooth descent: Command Z to slowly ramp down by 0.005m per loop (0.25 m/s descent rate at 50Hz)
-                # We use max() so it aims just below the platform but doesn't try to fly through the floor.
-                self.target_z = max(plat_cam[2] - 0.05, self.current_pose.pose.position.z - 0.005)
-                
-                dist_z = abs(self.current_pose.pose.position.z - plat_cam[2])
-                
-                # Disarm when within 8cm vertically
-                if dist_z < 0.08:
-                    self.get_logger().info("Touchdown! Disarming motors.")
-                    self.current_state = "ABORT"
-                    
-                    arm_req = CommandBool.Request()
-                    arm_req.value = False 
-                    self.arm_client.call_async(arm_req)
+                # Check if we have made contact (within 10cm of the platform's altitude)
+                dz = p_cam[2] - current_pos[2]
+                if abs(dz) < 0.1:
+                    self.get_logger().info("Platform reached! Transitioning to LAND state.")
+                    self.current_state = "LAND"
 
         elif self.current_state == "LAND":
             self.target_z = -0.1
@@ -372,7 +329,7 @@ class CommNode(Node):
             arm_req.value = False 
             self.arm_client.call_async(arm_req)
 
-        # ALWAYS PUBLISH SETPOINTS (50Hz)
+        # PUBLISH SETPOINTS
         msg = PoseStamped()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = 'map'
@@ -387,6 +344,7 @@ class CommNode(Node):
         msg.pose.orientation.z = self.target_orientation_z
 
         self.setpoint_pub.publish(msg)
+
 
 def main(args=None):
     rclpy.init(args=args)
