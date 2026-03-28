@@ -24,7 +24,7 @@ class AprilTagDetector(Node):
         self.aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_APRILTAG_25h9)
         self.aruco_params = cv2.aruco.DetectorParameters_create()
         # SET YOUR TARGET ID HERE
-        self.target_id = 9
+        self.target_id = 15
         
         # Camera center parameters (Assuming 640x480 resolution)
         self.center_x = 320.0

@@ -52,6 +52,8 @@ class CommNode(Node):
         self.ki_y = -0.0
         self.kd_x = 0.0
         self.kd_y = -0.0
+        self.last_error_x = 0.0
+        self.last_error_y = 0.0
         self.max_xy_speed = 0.3
         self.max_z_speed = 0.05
         self.descent_speed = -0.1
