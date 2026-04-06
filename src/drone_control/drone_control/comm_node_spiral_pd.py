@@ -44,7 +44,7 @@ class CommNode(Node):
         self.target_2d = None
         self.last_apriltag_time = 0.0
 
-        # --- Tuning Parameters for Centering & Landing ---
+        # --- Parameters for Centering & Landing ---
         self.kp_x = 0.005 
         self.kp_y = -0.005
         self.kp_z = -0.002
@@ -64,20 +64,20 @@ class CommNode(Node):
         self.srv_launch = self.create_service(Trigger, 'rob498_drone_5/comm/launch', self.callback_launch)
         # calibration wrt vicon to generate waypoints in camera frame that are within bounds of vicon
         self.srv_calib  = self.create_service(Trigger, 'rob498_drone_5/comm/calibrate', self.callback_calibrate)
-        # Test has 2 components: search (follows a pattern generated in calibration) + test which uses monocular camera for visual servoeing
+        # test is: search (follows a pattern generated in calibration) + test which uses monocular camera for visual servoeing
         self.srv_test   = self.create_service(Trigger, 'rob498_drone_5/comm/test', self.callback_test) 
         # land
         self.srv_land_imx = self.create_service(Trigger, 'rob498_drone_5/comm/land_imx', self.callback_land_imx)
-        # ignore these 2, basically land in place
+        # ignore these 2, just land in place
         self.srv_land   = self.create_service(Trigger, 'rob498_drone_5/comm/land', self.callback_land)
         self.srv_abort  = self.create_service(Trigger, 'rob498_drone_5/comm/abort', self.callback_abort)
 
-        # --- Calibration Variables ---
+        # Calibration Variables
         self.calib_waypoints = [
             [0.0, 0.0, 0.0],  # WP1: Replaced by current pos on trigger
-            [0.5, 0.5, 0.5],  # WP2
-            [0.5, 1.0, 1.0],  # WP3
-            [-0.5, 1.0, 0.5]  # WP4
+            [0.5, 0.5, 0.5],  # WP2, etc downwards
+            [0.5, 1.0, 1.0],
+            [-0.5, 1.0, 0.5]
         ]
         self.calib_wp_index = 0
         self.calib_cam_pts = []
@@ -93,14 +93,14 @@ class CommNode(Node):
         self.t_vicon_to_cam = np.zeros(3)
         self.is_calibrated = False
 
-        # --- Search Phase Variables ---
+        # Search Phase
         self.search_waypoints_cam = np.empty((0, 3))
         self.search_wp_index = 0
         self.waiting_at_wp = False
         self.wp_arrival_time = 0.0
         self.search_height = 1.5
         
-        # --- Centering Phase Variables ---
+        # Centering Phase
         self.land_automatically = False
 
         # The main code (runs at 50Hz)
@@ -114,8 +114,8 @@ class CommNode(Node):
         """Generates an outward spiral in Vicon frame bounded by [-2, 2] and Z=1.5"""
         wps = []
         theta = 0.0
-        d_theta = 0.5         # Radians to increment per step
-        spacing = 0.4         # Distance (meters) between spiral rings
+        d_theta = 0.5 # angle increment per step, in rad
+        spacing = 0.4 # dist (meters) between spiral rings
         b = spacing / (2 * np.pi)
         
         while True:
@@ -123,18 +123,17 @@ class CommNode(Node):
             x = r * np.cos(theta)
             y = r * np.sin(theta)
             
-            # Strict boundary constraint: Vicon X, Y in [-2.5, 2.5]
-            # Using 2.5 so the drone itself doesn't drift past boundary set by vicon
+            # set boundary constraint: xicon x,y in [-2.5, 2.5]
             if abs(x) > 2.0 or abs(y) > 2.0:
                 break
                 
-            wps.append([x, y, self.search_height]) # Z = 1.5 constraint, fly at 1.0m above ground
+            wps.append([x, y, self.search_height]) # z = 1.5 constraint, fly at a m above ground
             theta += d_theta
             
         return np.array(wps)
 
     def waypoints_to_cam_fr(self, vicon_waypoints):
-        """Applies Kabsch transformation to a set of waypoints."""
+        # Kabsch transformation for a set of waypoints
         local_waypoints = np.empty((0, 3))
         for wp in vicon_waypoints:
             local_wp = np.dot(self.R_vicon_to_cam, wp) + self.t_vicon_to_cam
@@ -142,7 +141,7 @@ class CommNode(Node):
         return local_waypoints
 
     def compute_kabsch(self):
-        """Computes optimal Rotation and Translation between Vicon and Camera frames."""
+        # optimal rot and trans between vicon and camera frames
         P_vic = np.array(self.calib_vic_pts)
         P_cam = np.array(self.calib_cam_pts)
 
@@ -168,9 +167,9 @@ class CommNode(Node):
 
         self.get_logger().info('\n=== KABSCH CALIBRATION COMPLETE ===')
         
-        # 1. Generate the spiral from 0,0,1.5 outward
+        # create the spiral from 0,0,1.5 outward
         vicon_spiral_wps = self.generate_spiral_pattern()
-        # 2. Transform the absolute bounds into our relative flying frame
+        # absolute bounds into relative flying frame
         self.search_waypoints_cam = self.waypoints_to_cam_fr(vicon_spiral_wps)
         self.get_logger().info(f'Generated {len(self.search_waypoints_cam)} bounded search waypoints. Awaiting /test.')
 
@@ -324,13 +323,13 @@ class CommNode(Node):
                 self.search_waypoints_cam = self.generate_spiral_pattern()
                 self.is_calibrated = True
 
-            # 1. Target Found -> Transition to HOVER (TEST)
+            # target found -> transition to HOVER (TEST)
             if tag_visible:
                 self.get_logger().info("TARGET SIGHTED! Intercepting -> Switching to Visual Servoing (TEST)")
                 self.current_state = "TEST"
                 return # Skip position control this loop
                 
-            # 2. Target Not Found -> Continue Spiral Path
+            # target not found -> continue spiral path
             if self.search_wp_index < len(self.search_waypoints_cam):
                 target_wp = self.search_waypoints_cam[self.search_wp_index]
                 self.target_x, self.target_y, self.target_z = target_wp[0], target_wp[1], target_wp[2]
@@ -357,7 +356,7 @@ class CommNode(Node):
 
         # --- VELOCITY CONTROL STATES ---
         elif self.current_state == "TEST":
-            # State 2: HOVER (Visual Servoing on Moving Platform)
+            # state 2: HOVER
             if not tag_visible:
                 self.vel_x, self.vel_y, self.vel_z = 0.0, 0.0, 0.0
                 self.get_logger().warn("Tag lost! Holding velocity.", throttle_duration_sec=1.0)
@@ -380,7 +379,7 @@ class CommNode(Node):
                     self.current_state = "LAND_IMX"
 
         elif self.current_state == "LAND_IMX":
-            # State 3: LAND_IMX (Visual Servoing + Descent)
+            # state 3: LAND_IMX
             if not tag_visible:
                 if current_z < 0.5:
                     self.get_logger().fatal("Tag lost below 0.5m! Initiating blind DROP.", throttle_duration_sec=1.0)
@@ -403,7 +402,7 @@ class CommNode(Node):
 
 
         # ==========================================
-        # CONDITIONAL PUBLISHER
+        # VELOCITY OR POS PUBLISHER
         # ==========================================
         if self.current_state in ["TEST", "LAND_IMX"]:
             twist_msg = TwistStamped()
